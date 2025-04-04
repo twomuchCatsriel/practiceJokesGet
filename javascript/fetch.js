@@ -8,10 +8,10 @@ let jsonFile = null; // JSON
 let length = 0; // Amount of entries within the JSON
 
 function getJokes(){ // Get JSON with a Fetch Request
-    fetch("https://terjetheteacher.github.io/some-jokes/justJokes.json")
+    fetch("https://terjetheteacher.github.io/some-jokes/jokes.json")
     .then((response) => response.json()) // turn the response into a json 
     .then((json) => { // use the json
-        length = Object.keys(json).length; // Get the amount of keys in the json Object
+        length = Object.keys(json.jokes).length; // Get the amount of keys in the json Object
         jsonFile = json; // Save the json to a Global variable 
 
         createList()
@@ -19,9 +19,9 @@ function getJokes(){ // Get JSON with a Fetch Request
 }
 
 function createList(){
-    for(let i = 1; i < (length + 1); i++){ // Write the list of all the jokes
+    for(let i = 0; i < length; i++){ // Write the list of all the jokes
         const newP = document.createElement("p");
-        newP.innerHTML = jsonFile[i]
+        newP.innerHTML = jsonFile.jokes[i].joke
         console.log(":D")
         addText.appendChild(newP)
     }
@@ -38,8 +38,8 @@ function stateOfJokes(state){
 }
 
 function randomizeJoke(){
-    let random = Math.floor(Math.random() * (length)) + 1 // Get a random number between 1 and 11
-    let joke = jsonFile[random] // set the joke
+    let random = Math.floor(Math.random() * (length) + 1) // Get a random number between 1 and 11
+    let joke = jsonFile.jokes[random].joke // set the joke
     return joke
 }
 
@@ -68,6 +68,6 @@ inOrder.addEventListener("click", () => { //
         clicked += 1;
     }
 
-    jokeText.innerHTML = jsonFile[clicked]
+    jokeText.innerHTML = jsonFile.jokes[clicked].joke
 
 })
