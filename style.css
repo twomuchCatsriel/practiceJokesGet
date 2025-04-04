@@ -22,3 +22,7 @@ body{
 #buttons button{
     padding: 10px 5px;
 }
+
+#jokeArea{
+    text-align: center;
+}
