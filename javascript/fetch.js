@@ -19,7 +19,7 @@ function getJokes(){ // Get JSON with a Fetch Request
 }
 
 function createList(){
-    for(let i = 1; i < length; i++){ // Write the list of all the jokes
+    for(let i = 1; i < (length + 1); i++){ // Write the list of all the jokes
         const newP = document.createElement("p");
         newP.innerHTML = jsonFile[i]
         console.log(":D")
@@ -28,7 +28,7 @@ function createList(){
 }
 
 function stateOfJokes(state){
-    if (state == true){ // Hide or show the jokeText div
+    if (state == true){ // Hide or show the jokeText div and addText div
         jokeText.style.display = "inline"
         addText.style.display = "none"
     } else {
@@ -43,27 +43,25 @@ function randomizeJoke(){
     return joke
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    getJokes();
-    addText.style.display = "none"
+document.addEventListener("DOMContentLoaded", () => { // Get the jokes when the document is loaded 
+    getJokes(); 
+    addText.style.display = "none" // hide addText by default 
 })
 
 oneJoke.addEventListener("click", () => {
-    jokeText.innerHTML = randomizeJoke()
+    jokeText.innerHTML = randomizeJoke() // Set the joke to a random joke
     stateOfJokes(true)
 })
 
 allJokes.addEventListener("click", () => {
-    stateOfJokes(false)
-
-
+    stateOfJokes(false) // Show addText, hide Jokes
 })
 
 let clicked = 0;
-inOrder.addEventListener("click", () => { 
+inOrder.addEventListener("click", () => { //
     stateOfJokes(true)
 
-    if(clicked == length){ // Loop through the object
+    if(clicked == length){ // Loop through the different keys, starting on 1 and resetting on 11.
         clicked = 1
     } 
     else{ 
